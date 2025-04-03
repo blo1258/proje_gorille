@@ -20,6 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
+				<h5 style="color:green">Bienvenue</h5>
 				<?php
 				foreach ($data['rooms'] as $room) {
 				?>

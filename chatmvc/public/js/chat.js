@@ -87,3 +87,26 @@
         socket.onclose = function (event) {
             console.log('Connexion WebSocket fermee ');
         };
+
+		function store_message (text, username, color, roomId) {
+			$.post ('../../src/Views/chat/ChatView.php', {
+				msg_text: text,
+        		msg_user_id: userId,
+        		msg_room_id: roomId,
+        		msg_color: color,
+        		msg_date: Date.now()
+			}, function(data) {
+				if (data.success) {
+					console.log("Message a ete enregiste");
+				} else {
+					console.log ("Message a pas enregiste!" , data.error);
+				}
+			}, 'json');
+		}
+
+		$('#send').click(function() {
+			let msg = $('#message').val();
+			if(msg != '') {
+				store_message(msg, username, color, roomId);
+			}
+		});

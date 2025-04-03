@@ -20,14 +20,19 @@ define('URL', 'http://localhost/projet_gorille/chatmvc');
 
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', htmlspecialchars($_GET['action']));
-
+var_dump($params);
 // Si le 2nd paramètre existe
 if (isset($params[1])) {
+
+    if ($params[0] === 'chat' && is_numeric($params[1])) { // is_numeric() ile sayısal ID kontrolü
+        $chatController = new ChatController();
+        $chatController->room($params[1]);
+    }
 
     // On sauvegarde le 1er paramètre dans $controller
     // puis, on lui en ajoute le suffixe Controller.
     $controller = ucfirst(htmlspecialchars($params[0])) . "Controller";
-    
+    var_dump($controller);
     // On sauvegarde le 2ème paramètre dans $method
     $method = htmlspecialchars($params[1]);
    

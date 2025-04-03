@@ -34,6 +34,11 @@ class loginController
 
 		if ($user && password_verify($password, $user['user_password'])) {
 		// connexion reussie, rediriger vers le chat
+
+		$colors = ['red', 'blue', 'green', 'gray', 'orange'];
+		$color = $colors[array_rand($colors)];
+
+		$_SESSION['color'] = $color;
 		header('Location:chat/ChatView');
 		exit;
 	} else {
@@ -62,6 +67,7 @@ class loginController
 
 		header('Location: ' . URL . '/Views/chat/ChatView');
 		exit;
+		var_dump(URL);
 	}
 		include '../chatmvc/src/Views/login/SignupView.php';
 }
@@ -78,5 +84,17 @@ class loginController
 		}
 		include '../chatmvc/src/Views/login/ForgotPasswordView.php';
 
+	}
+
+	public function loadModel ($modelName) 
+	{
+		$modelClass = 'MyApp\Models\\' . $modelName;
+		$this->loginModel = new $modelClass();
+	}
+
+	public function render(string $fichier, array $data = []): void
+	{
+		extract($data);
+		include ROOT . 'src/Views' . $fichier . '.php';
 	}
 }
