@@ -5,6 +5,7 @@ namespace MyApp\Controllers;
 // use ici le namespace des classes que tu utilises
 use MyApp\Models\chatModel;
 
+
 class ChatController
 {
 	private $chatModel;
@@ -37,10 +38,24 @@ class ChatController
 		$query = $_GET['query'];
 		$results = $this->chatModel->searchRoom($query);
 		$data['results'] = $results;
-		$data['user'] = $this->chatModel->getUserById($_SESSION['user_id'])['user_name'];
+		$data['user'] = $this->chatModel->getUserById($_SESSION['user_id']);
+		$data['user'] = 'Test Kullanıcı';
+		if(isset($_SESSION['user_id'])) {
+			$user = $this->chatModel->getUserById($_SESSION['user_id']);
+
+			if($user) {
+				$data['user'] = $user['user_name'];
+			} else {
+				$data['user'] = 'Invité';
+			}
+		} else {
+			$data['user'] = 'Invité';
+		}
+		// var_dump($data['user']);
 		
 		$this->render('chat/SearchView', $data);
-		var_dump($_SESSION['user_id']);
+		var_dump($_SESSION);
+		error_log($_SESSION['user_id']);
 	}
 
 	public function loadModel($modelName) {
@@ -65,14 +80,14 @@ class ChatController
 
 	public function insert() {
 		$msg_text = $_POST['msg_text'];
-    $msg_user_id = $_POST['msg_user_id'];
-    $msg_room_id = $_POST['msg_room_id'];
-    $msg_color = $_POST['msg_color'];
-    $msg_date = $_POST['msg_date'];
+		$msg_user_id = $_POST['msg_user_id'];
+		$msg_room_id = $_POST['msg_room_id'];
+		$msg_color = $_POST['msg_color'];
+		$msg_date = $_POST['msg_date'];
 
 	$color = $_SESSION['color'];
 
-    $result = $this->chatModel->insertMessage($msg_user_id, $msg_room_id, $msg_text, $msg_date, $msg_color);
+    $result = $this->chatModel->insertMessage($msg_user_id, $msg_room_id, $msg_text, $msg_date, $msg_color, $color);
 
 		if($result) {
 			echo json_encode(['success' => true]);

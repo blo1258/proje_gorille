@@ -89,7 +89,7 @@
         };
 
 		function store_message (text, username, color, roomId) {
-			$.post ('../../src/Views/chat/ChatView.php', {
+			$.post ('../../chat/insert', {
 				msg_text: text,
         		msg_user_id: userId,
         		msg_room_id: roomId,
