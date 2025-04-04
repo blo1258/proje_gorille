@@ -20,10 +20,11 @@ define('URL', 'http://localhost/projet_gorille/chatmvc');
 
 // On sépare les paramètres et on les met dans le tableau $params
 $params = explode('/', htmlspecialchars($_GET['action']));
-var_dump($params);
+
+    
 // Si le 2nd paramètre existe
 if (isset($params[1])) {
-
+    
     if ($params[0] === 'chat' && is_numeric($params[1])) { // is_numeric() ile sayısal ID kontrolü
         $chatController = new ChatController();
         $chatController->room($params[1]);
@@ -32,7 +33,7 @@ if (isset($params[1])) {
     // On sauvegarde le 1er paramètre dans $controller
     // puis, on lui en ajoute le suffixe Controller.
     $controller = ucfirst(htmlspecialchars($params[0])) . "Controller";
-    var_dump($controller);
+    
     // On sauvegarde le 2ème paramètre dans $method
     $method = htmlspecialchars($params[1]);
    
@@ -43,7 +44,8 @@ if (isset($params[1])) {
     // On instancie la classe correspondante
     
     $oController = new $controller();
-
+        
+      
     // On vérifie si la méthode existe bien dans la classe
     if (method_exists($oController, $method)) {
         // On appelle la méthode $method du controleur $controller
@@ -52,6 +54,7 @@ if (isset($params[1])) {
         // On envoie le code réponse 404
         http_response_code(404);
         echo "La page recherchée n'existe pas";
+
     }
 }catch (Exception $e) {
     echo "Erreur ".$e->getMessage();

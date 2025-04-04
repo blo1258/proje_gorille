@@ -37,8 +37,10 @@ class ChatController
 		$query = $_GET['query'];
 		$results = $this->chatModel->searchRoom($query);
 		$data['results'] = $results;
+		$data['user'] = $this->chatModel->getUserById($_SESSION['user_id'])['user_name'];
 		
 		$this->render('chat/SearchView', $data);
+		var_dump($_SESSION['user_id']);
 	}
 
 	public function loadModel($modelName) {
@@ -77,6 +79,19 @@ class ChatController
 		} else {
 			echo json_encode(['success' => false, 'error' => 'Message na pas enregiste!']);
 		}
+
+		$timestamp = time(); // utilise reel date
+		// enregistre dans la database
+		$this->chatModel->insertMessage($msg_user_id, $msg_room_id, $msg_text, $timestamp, $msg_color);
+	}
+
+	public function getMessage($roomId) {
+		$messages = $this->chatModel->getMessages($roomId);
+
+		foreach ($messages as &$message) {
+			$message['msg_date'] = date('d/m/Y H:i:s', $message['msg_date']);
+		}
+
 	}
 	
 }

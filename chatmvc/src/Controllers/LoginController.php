@@ -67,7 +67,7 @@ class loginController
 
 		header('Location: ' . URL . '/Views/chat/ChatView');
 		exit;
-		var_dump(URL);
+		
 	}
 		include '../chatmvc/src/Views/login/SignupView.php';
 }

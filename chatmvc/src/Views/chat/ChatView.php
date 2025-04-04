@@ -31,7 +31,7 @@
 				}
 				?>
 				<hr>
-				<div><a href="../search">Rechercher</a>
+				<div><a href="/projet_gorille/chatmvc/src/Views/chat/SearchView.php">Rechercher</a>
 				</div>
 			</div>
 

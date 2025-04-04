@@ -8,7 +8,7 @@
     <!-- BOOTSTRAP CORE STYLE  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- CUSTOM STYLE  -->
-    <link href="../../css/style.css" rel="stylesheet" />
+    <link href="../public/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
