@@ -42,10 +42,11 @@ $color_pick = array_rand($colors);
 			var user_message = response.message; //message text
 			var user_name = response.name; //user name
 			var user_color = response.color; //color
+			var message_date = response.date; //date
 
 			switch (res_type) {
 				case 'usermsg':
-					msgBox.append('<div><span class="user_name" style="color:' + user_color + '">' + user_name + '</span> : <span class="user_message">' + user_message + '</span></div>');
+					msgBox.append('<div><span class="user_name" style="color:' + user_color + '">' + user_name + '</span> : <span class="user_message">'+'</span> (<span class="message_date" style="color:' + user_color + '">' + message_date + '</span>) : <span class="user_message">' + user_message + '</span></div>');
 					break;
 				case 'system':
 					msgBox.append('<div style="color:#bbbbbb">' + user_message + '</div>');

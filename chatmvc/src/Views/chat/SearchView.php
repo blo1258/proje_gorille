@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div style="float:right"><a href="../chat/1">Retour</a></div>
                 <h2>RECHERCHE DANS LE CHAT</h2>
-                <h4>Vous êtes connecté en tant que <?php echo $data['user'] ?></h4>
+                <!--<h4>Vous êtes connecté en tant que <?php echo $data['user'] ?></h4>-->
             </div>
         </div>
         <div class="row">

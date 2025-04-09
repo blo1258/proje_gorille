@@ -28,6 +28,7 @@ if (isset($params[1])) {
     if ($params[0] === 'chat' && is_numeric($params[1])) { // is_numeric() ile sayısal ID kontrolü
         $chatController = new ChatController();
         $chatController->room($params[1]);
+        exit();
     }
 
     // On sauvegarde le 1er paramètre dans $controller
