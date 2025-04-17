@@ -61,7 +61,12 @@
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+	const userId = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null'; ?>;
+    const username = '<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>';
+    const color = '<?php echo isset($_SESSION['color']) ? $_SESSION['color'] : ''; ?>';
+    const roomId = document.getElementById('currentRoom').getAttribute('value'); // Eğer room ID HTML'de tutuluyorsa
+</script>
 <script src="/projet_gorille/chatmvc/public/js/chat.js"></script>
 
 </html>

@@ -35,7 +35,7 @@ class loginController
 		if ($user && password_verify($password, $user['user_password'])) {
 		// connexion reussie, rediriger vers le chat
 
-		$colors = ['red', 'blue', 'green', 'gray', 'orange'];
+		$colors = array('#007AFF', '#FF7000', '#FF7000', '#15E25F', '#CFC700', '#CFC700', '#CF1100', '#CF00BE', '#F00');
 		$color = $colors[array_rand($colors)];
 
 		$_SESSION['color'] = $color;

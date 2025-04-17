@@ -11,15 +11,21 @@
 		// Message received from server
 		websocket.onmessage = function(ev) {
 			var response = JSON.parse(ev.data); //PHP sends Json data
-
 			var res_type = response.type; //message type
 			var user_message = response.message; //message text
 			var user_name = response.name; //user name
 			var user_color = response.color; //color
+			var message_time = response.time; //message time
+
+			let formattedDate = '';
+			if (message_time) {
+				let date = new Date(message_time * 1000); // Convert timestamp to milliseconds
+				formattedDate = date.toLocaleString(); // Format the date as desired
+			} 
 
 			switch (res_type) {
 				case 'usermsg':
-					msgBox.append('<div><span class="user_name" style="color:' + user_color + '">' + user_name + '</span> : <span class="user_message">' + user_message + '</span></div>');
+					msgBox.append('<div><span class="user_name" style="color:' + user_color + '">' + user_name + '</span> (<span class="message_date" style="color:' + user_color + '">' + formattedDate + '</span>) : <span class="user_message">' + user_message + '</span></div>');
 					break;
 				case 'system':
 					msgBox.append('<div style="color:#bbbbbb">' + user_message + '</div>');
@@ -94,7 +100,7 @@
         		msg_user_id: userId,
         		msg_room_id: roomId,
         		msg_color: color,
-        		msg_date: Date.now()
+        		msg_date: Date.now() / 1000, // Convert milliseconds to seconds
 			}, function(data) {
 				if (data.success) {
 					console.log("Message a ete enregiste");
