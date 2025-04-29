@@ -59,7 +59,7 @@ class ChatController
 	}
 
 	public function loadModel($modelName) {
-		$modelClass = 'MyApp\Models\\' .$modelName;
+		$modelClass = 'projet_gorille\Models\\' .$modelName;
 		$this->chatModel = new $modelClass();
 	}
 

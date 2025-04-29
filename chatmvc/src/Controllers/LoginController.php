@@ -57,7 +57,7 @@ class loginController
 
 	public function signup()
 	{
-		var_dump($_POST);
+		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
 		$userName = $_POST['pseudo'];
 		$email = $_POST['email'];
@@ -65,7 +65,7 @@ class loginController
 
 		$this->loginModel->createUser($userName, $password, $email);
 
-		header('Location: ' . URL . '/Views/chat/ChatView');
+		header('Location: ' . URL . '/chat/ChatView');
 		exit;
 		
 	}
@@ -88,7 +88,7 @@ class loginController
 
 	public function loadModel ($modelName) 
 	{
-		$modelClass = 'MyApp\Models\\' . $modelName;
+		$modelClass = 'PR\Models\\' . $modelName;
 		$this->loginModel = new $modelClass();
 	}
 

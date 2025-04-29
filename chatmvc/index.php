@@ -3,6 +3,7 @@
 use MyApp\Controllers\loginController;
 use MyApp\Controllers\ChatController;
 
+
 require_once 'vendor/autoload.php';
 
 // Démarre une Session
@@ -19,7 +20,7 @@ define('URL', 'http://localhost/projet_gorille/chatmvc');
 // *******
 
 // On sépare les paramètres et on les met dans le tableau $params
-$params = explode('/', htmlspecialchars($_GET['action']));
+$params = explode('/', htmlspecialchars($_GET['action'] ?? ''));
 
     
 // Si le 2nd paramètre existe
@@ -33,7 +34,7 @@ if (isset($params[1])) {
 
     // On sauvegarde le 1er paramètre dans $controller
     // puis, on lui en ajoute le suffixe Controller.
-    $controller = ucfirst(htmlspecialchars($params[0])) . "Controller";
+   $controller = ucfirst(htmlspecialchars($params[0])) . 'Controller';
     
     // On sauvegarde le 2ème paramètre dans $method
     $method = htmlspecialchars($params[1]);
@@ -43,7 +44,7 @@ if (isset($params[1])) {
     try {
     $controller = 'MyApp\Controllers\\' . $controller;
     // On instancie la classe correspondante
-    
+   
     $oController = new $controller();
         
       
@@ -70,3 +71,4 @@ if (isset($params[1])) {
     // On appelle la méthode login
     $oController->loginIndex();
 }
+
